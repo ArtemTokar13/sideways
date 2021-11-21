@@ -5,6 +5,29 @@
     <title>Home</title>
 </head>
 <body>
-<h2>Hello {{ user.username }}</h2>
+
+{% if user.is_authenticated %}
+
+<form action="{% url 'logout' %}" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Salir"/>
+</form>
+
+<h2>Usario</h2>
+<h3>{{ especialidad }} - {{ nombre_del_hospital }}</h3>
+
+{% else %}
+
+{{ error }}
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <p>{{ authentication_form.username }}</p>
+    <p>{{ authentication_form.password }}</p>
+    <p><input type="submit" value="Iniciar sesion" /></p>
+</form>
+
+{% endif %}
+
 </body>
 </html>

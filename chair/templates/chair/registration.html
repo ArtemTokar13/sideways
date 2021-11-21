@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+</head>
+<body>
+<h3>{{ registration_form.errors.password2 }}</h3>
+<h1>Registration form</h1>
+<form method="POST">
+    {% csrf_token %}
+    <p>{{ registration_form.username }}</p>
+    <p>{{ registration_form.password1 }}</p>
+    <p>{{ registration_form.password2 }}</p>
+    <button type="submit">Remember Me</button>
+</form>
+</body>
+</html>

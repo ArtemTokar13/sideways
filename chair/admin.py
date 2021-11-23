@@ -5,6 +5,8 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 import re
 
+from chair.models import DepartamentoModel, ChairModel
+
 
 class UserCreationForm(forms.ModelForm):
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
@@ -19,6 +21,7 @@ class UserCreationForm(forms.ModelForm):
         username = self.cleaned_data.get('username')
         password1 = self.cleaned_data.get('password1')
         password2 = self.cleaned_data.get('password2')
+        print(type(username))
         if re.match(r'.*[A-Z|~]+.*', username):
             raise ValidationError('Username can`t contain uppercase simbol or tild (~)')
         if not re.match(r'[\W\w]+@[\W\w]+', username):
@@ -37,3 +40,6 @@ class UserCreationForm(forms.ModelForm):
             user.save()
         return user
 
+
+admin.site.register(DepartamentoModel)
+admin.site.register(ChairModel)

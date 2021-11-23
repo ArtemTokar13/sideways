@@ -16,15 +16,34 @@
 <h2>Usario</h2>
 <h3>{{ especialidad }} - {{ nombre_del_hospital }}</h3>
 
+<h3>Selecciona un nuevo destino</h3>
+
+<!--{% for destino in destinos %}-->
+
+<!--<form action="{% url 'change_destination' %}" method="POST">-->
+<!--    {% csrf_token %}-->
+<!--    <input type="submit" value="{{ destino.departamento }}" name="destino"/>-->
+<!--</form>-->
+
+<!--{% endfor %}-->
+
 {% else %}
 
 {{ error }}
+
+<h3>Inicia sesion</h3>
+<h4>Sideways, el transporte del futuro</h4>
 
 <form action="" method="POST">
     {% csrf_token %}
     <p>{{ authentication_form.username }}</p>
     <p>{{ authentication_form.password }}</p>
     <p><input type="submit" value="Iniciar sesion" /></p>
+</form>
+
+<form action="{% url 'registration' %}" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Registrarse"/>
 </form>
 
 {% endif %}

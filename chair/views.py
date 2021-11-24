@@ -5,8 +5,8 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render, redirect
 from django.views import View
 
-from chair.forms import UserRegistrationForm, ChairForm, LoginForm
-from chair.models import DepartamentoModel, ChairModel
+from chair.forms import UserRegistrationForm, LoginForm
+from chair.models import ChairModel
 
 
 class HomeView(View):
@@ -18,11 +18,11 @@ class HomeView(View):
             query_user = re.findall(r'[^\@]+', current_user)
             speciality = query_user[0]
             hospital = query_user[1]
-            destinations = DepartamentoModel.objects.all()
+            chair = ChairModel.objects.all()
             return render(request=request, template_name='chair/homepage.html',
                           context={'especialidad': speciality,
                                    'nombre_del_hospital': hospital,
-                                   # 'destinos': destinations,
+                                   'chair': chair,
                                    })
         return render(request=request, template_name='chair/homepage.html', context={'authentication_form': form})
 
@@ -49,6 +49,7 @@ class RegistrationView(View):
         if form.is_valid():
             user = form.save()
             login(request, user)
+            ChairModel.objects.filter(estado='Libre').update(owner=request.user.id)
             return redirect('home')
         return render(request=request, template_name='chair/registration.html', context={'registration_form': form})
 
@@ -59,12 +60,22 @@ class LogoutView(View):
         logout(request)
         return redirect('home')
 
-# class ChangeDestination(View):
-#
-#     def post(self, request):
-#         # ChairModel.objects.filter(id=request.POST.get('id')).update(destino=request.POST.get('destino'))
-#         chair = ChairForm(request.POST)
-#         chair.destino = request.POST.get('destino')
-#         chair.destino.update()
-#         print(chair.destino)
-#         return redirect('home')
+class ChangeDestination(View):
+
+    def post(self, request):
+        chair = ChairModel.objects.filter(owner=request.user)[0].estado
+        if chair == 'Libre':
+            print('LIBRE!!!')
+            if 'oncologia' in request.POST:
+                ChairModel.objects.filter(owner=request.user).update(estado='Ocupado')
+                ChairModel.objects.filter(owner=request.user).update(destino='Oncologia')
+            if 'radiologia' in request.POST:
+                ChairModel.objects.filter(owner=request.user).update(estado='Ocupado')
+                ChairModel.objects.filter(owner=request.user).update(destino='Radiologia')
+            if 'farmacia' in request.POST:
+                ChairModel.objects.filter(owner=request.user).update(estado='Ocupado')
+                ChairModel.objects.filter(owner=request.user).update(destino='Farmacia')
+            return redirect('home')
+        if 'en_blanco' in request.POST:
+            ChairModel.objects.filter(owner=request.user).update(estado='Libre', destino='"En blanco"', ubicacion='Estacion de carga')
+        return redirect('home')

@@ -11,10 +11,10 @@ class UserRegistrationForm(UserCreationForm):
         fields = ('username', 'password1', 'password2',)
 
 
-class ChairForm(forms.ModelForm):
-    class Meta:
-        model = ChairModel
-        fields = ('destino',)
+# class ChairSelectForm(forms.ModelForm):
+#     class Meta:
+#         model = ChairModel
+#         fields = ('owner',)
 
 
 class LoginForm(forms.Form):

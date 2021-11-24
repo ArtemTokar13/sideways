@@ -18,14 +18,38 @@
 
 <h3>Selecciona un nuevo destino</h3>
 
-<!--{% for destino in destinos %}-->
+{{ ocupado }}
 
-<!--<form action="{% url 'change_destination' %}" method="POST">-->
-<!--    {% csrf_token %}-->
-<!--    <input type="submit" value="{{ destino.departamento }}" name="destino"/>-->
-<!--</form>-->
+<form action="{% url 'change_destination' %}" method="POST">
+    {% csrf_token %}
+    <button name="oncologia" type="submit" value="oncologia">Oncologia</button>
+</form>
 
-<!--{% endfor %}-->
+<form action="{% url 'change_destination' %}" method="POST">
+    {% csrf_token %}
+    <button name="radiologia" type="submit" value="radiologia">Radiologia</button>
+</form>
+
+<form action="{% url 'change_destination' %}" method="POST">
+    {% csrf_token %}
+    <button name="farmacia" type="submit" value="farmacia">Farmacia</button>
+</form>
+
+<form action="{% url 'change_destination' %}" method="POST">
+    {% csrf_token %}
+    <button name="en_blanco" type="submit" value="en_blanco">CANCELAR DESTINO</button>
+</form>
+
+<img src="{% static 'img/phoenix9.png' %}">
+
+{% for c in chair %}
+
+<p>PHX-0{{ c.owner.id }}</p>
+<p>{{ c.ubicacion }}</p>
+<p>{{ c.estado }}</p>
+<p>{{ c.destino }}</p>
+
+{% endfor %}
 
 {% else %}
 

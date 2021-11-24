@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 import re
 
-from chair.models import DepartamentoModel, ChairModel
+from chair.models import ChairModel
 
 
 class UserCreationForm(forms.ModelForm):
@@ -41,5 +41,4 @@ class UserCreationForm(forms.ModelForm):
         return user
 
 
-admin.site.register(DepartamentoModel)
 admin.site.register(ChairModel)

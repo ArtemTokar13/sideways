@@ -3,7 +3,7 @@ from django.db import models
 
 
 class ChairModel(models.Model):
-    ubicacion = models.CharField(max_length=255, default='Estación de Carga')
+    ubicacion = models.CharField(max_length=255, default='Estacion de carga')
     estado = models.CharField(max_length=255, default='Libre')
     destino = models.CharField(max_length=255, default='"En blanco"')
     owner = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
@@ -16,16 +16,3 @@ class ChairModel(models.Model):
         else:
             id = self.id
         return id
-
-class DepartamentoModel(models.Model):
-    departamento = models.CharField(max_length=255)
-
-    def __str__(self):
-        return self.departamento
-
-# class UserProfile(models.Model):
-#     username = models.OneToOneField(User, on_delete=models.CASCADE)
-#     vehicle = models.ForeignKey(ChairModel, on_delete=models.CASCADE)
-#
-#     def __str__(self):
-#         return self.username

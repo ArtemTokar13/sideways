@@ -1,0 +1,153 @@
+body {
+font-family: Arial;
+color: #1e3640;
+}
+
+.page {
+margin-left: 200px;
+margin-right: 200px;
+margin-top: 50px;
+}
+
+.login {
+margin-top: 10%;
+display: block;
+margin-left: 35%;
+border:solid;
+border-width:4px;
+border-color:#108ffc;
+border-radius: 25px;
+width: 400px;
+height: 400px;
+font-size: 18px;
+}
+
+.login_button {
+margin: 25px 0 0 38px;
+background-color: #108ffc;
+color: white;
+height:60px;
+width:300px;
+border-radius: 20px;
+font-size: 20px;
+}
+
+.reg_button {
+margin-top: 10px;
+background-color: white;
+color: #1e3640;
+height:60px;
+width:300px;
+border-radius: 20px;
+font-size: 20px;
+}
+
+.registration_text {
+margin-left: 5%;
+}
+
+.registration {
+margin-left: 37%;
+}
+
+.input {
+width:100%;
+padding: 20px;
+margin:0 auto;
+border-radius:15px;
+}
+
+.inline div {
+display: inline-block;
+}
+
+.sideways_img {
+width: 200px;
+}
+
+.salir_button {
+background-color: white;
+color: #108ffc;
+height:60px;
+width:200px;
+border-radius: 30px;
+font-size: 20px;
+}
+
+.salir_position {
+float: right;
+}
+
+.user {
+margin-top: 80px;
+}
+
+.manage {
+margin-top: 80px;
+display: block;
+margin-left: auto;
+margin-right: auto;
+width: 65%;
+display: table;
+}
+
+.button_block {
+margin: 0 120px 0 0;
+display: table-cell;
+vertical-align: middle;
+}
+
+.destino_button {
+background-color: #108ffc;
+color: white;
+height:130px;
+width:430px;
+border-radius: 30px;
+font-size: 28px;
+margin: 20px 100px 20px 0;
+}
+
+.cancelar_button {
+background-color: #f37126;
+color: white;
+height:70px;
+width:430px;
+border-radius: 30px;
+font-size: 28px;
+margin: 20px 100px 20px 0;
+}
+
+.sidway_details_block {
+margin-top: 50px;
+display: table-cell;
+vertical-align: middle;
+border:solid;
+border-width:4px;
+border-color:#108ffc;
+border-radius: 25px;
+width: 640px;
+height: 720px;
+}
+
+.sideway_img {
+width: 300px;
+display: block;
+margin-left: auto;
+margin-right: auto;
+}
+
+.detalles {
+font-size: 28px;
+margin-left: 20px;
+}
+
+hr {
+border: none;
+width: 150%;
+background-color: #108ffc;
+height: 4px;
+}
+
+.field {
+margin: 25px 0 0 38px;
+}

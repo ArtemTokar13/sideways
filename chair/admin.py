@@ -1,6 +1,7 @@
 from django.contrib import admin
 
 from django import forms
+from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 import re
@@ -18,6 +19,7 @@ class UserCreationForm(forms.ModelForm):
 
     def clean_password2(self):
         """Check username and passwords"""
+        print('WE ARE HERE')
         username = self.cleaned_data.get('username')
         password1 = self.cleaned_data.get('password1')
         password2 = self.cleaned_data.get('password2')

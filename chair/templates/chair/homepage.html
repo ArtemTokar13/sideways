@@ -1,76 +1,116 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
 
+<div class="page">
+
 {% if user.is_authenticated %}
 
-<form action="{% url 'logout' %}" method="POST">
-    {% csrf_token %}
-    <input type="submit" value="Salir"/>
-</form>
+<div class="inline">
+    <div>
+        <img class="sideways_img" src="{% static 'img/Group 492 (1).png' %}">
+    </div>
+    <div class="salir_position">
+        <form action="{% url 'logout' %}" method="POST">
+            {% csrf_token %}
+            <button class="salir_button" name="salir" type="submit">Salir</button>
+        </form>
+    </div>
+</div>
 
-<h2>Usario</h2>
-<h3>{{ especialidad }} - {{ nombre_del_hospital }}</h3>
 
-<h3>Selecciona un nuevo destino</h3>
+<div class="user">
+    <h1>Usario</h1>
+    <h2>{{ especialidad }} - {{ nombre_del_hospital }}</h2>
+</div>
 
-{{ ocupado }}
+<div class="inline manage">
+    <div class="button_block">
+        <h1>Selecciona un nuevo destino</h1>
 
-<form action="{% url 'change_destination' %}" method="POST">
-    {% csrf_token %}
-    <button name="oncologia" type="submit" value="oncologia">Oncologia</button>
-</form>
+        <form action="{% url 'change_destination' %}" method="POST">
+            {% csrf_token %}
+            <button class="destino_button" name="oncologia" type="submit" value="oncologia">Oncologia</button>
+        </form>
 
-<form action="{% url 'change_destination' %}" method="POST">
-    {% csrf_token %}
-    <button name="radiologia" type="submit" value="radiologia">Radiologia</button>
-</form>
+        <form action="{% url 'change_destination' %}" method="POST">
+            {% csrf_token %}
+            <button class="destino_button" name="radiologia" type="submit" value="radiologia">Radiologia</button>
+        </form>
 
-<form action="{% url 'change_destination' %}" method="POST">
-    {% csrf_token %}
-    <button name="farmacia" type="submit" value="farmacia">Farmacia</button>
-</form>
+        <form action="{% url 'change_destination' %}" method="POST">
+            {% csrf_token %}
+            <button class="destino_button" name="farmacia" type="submit" value="farmacia">Farmacia</button>
+        </form>
 
-<form action="{% url 'change_destination' %}" method="POST">
-    {% csrf_token %}
-    <button name="en_blanco" type="submit" value="en_blanco">CANCELAR DESTINO</button>
-</form>
+        <form action="{% url 'change_destination' %}" method="POST">
+            {% csrf_token %}
+            <button class="cancelar_button" name="en_blanco" type="submit" value="en_blanco">CANCELAR DESTINO</button>
+        </form>
 
-<img src="{% static 'img/phoenix9.png' %}">
+    </div>
+    <div class="sidway_details_block">
+        <img class="sideway_img" src="{% static 'img/phoenix9.png' %}">
 
-{% for c in chair %}
-
-<p>PHX-0{{ c.owner.id }}</p>
-<p>{{ c.ubicacion }}</p>
-<p>{{ c.estado }}</p>
-<p>{{ c.destino }}</p>
-
-{% endfor %}
+        {% for c in chair %}
+        <div class="detalles">
+            <p>ID: PHX-0{{ c.owner.id }}</p>
+            <hr>
+            <p>Ubicacion: {{ c.ubicacion }}</p>
+            <hr>
+            <p>Estado: {{ c.estado }}</p>
+            <hr>
+            <p>Destino: {{ c.destino }}</p>
+            <hr>
+        </div>
+        {% endfor %}
+    </div>
+</div>
 
 {% else %}
 
-{{ error }}
+<img class="sideways_img" src="{% static 'img/Group 492 (1).png' %}">
 
-<h3>Inicia sesion</h3>
-<h4>Sideways, el transporte del futuro</h4>
+<div class="login">
 
-<form action="" method="POST">
-    {% csrf_token %}
-    <p>{{ authentication_form.username }}</p>
-    <p>{{ authentication_form.password }}</p>
-    <p><input type="submit" value="Iniciar sesion" /></p>
-</form>
+    {{ error }}
 
-<form action="{% url 'registration' %}" method="POST">
-    {% csrf_token %}
-    <input type="submit" value="Registrarse"/>
-</form>
+    <div class="registration_text">
+        <h1>Inicia sesion</h1>
+        <h3>Sideways, el transporte del futuro</h3>
+    </div>
+    <div class="form">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div class="fieldWrapper">
+                <div class="field">
+                    {{ authentication_form.username }}
+                </div>
+                <div class="field">
+                    {{ authentication_form.password }}
+                </div>
+            </div>
+            <button class="login_button" type="submit" value="iniciar_secion">Iniciar secion</button>
+        </form>
+    </div>
+
+</div>
+<div class="registration">
+    <form action="{% url 'registration' %}" method="POST">
+        {% csrf_token %}
+        <button class="reg_button" type="submit" value="registrarse">Registrarse</button>
+    </form>
+</div>
 
 {% endif %}
+
+</div>
 
 </body>
 </html>
